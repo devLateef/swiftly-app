@@ -20,6 +20,11 @@ const userSchema = mongoose.Schema({
         type: String,
         require: true
     },
+    category: {
+        type: String,
+        require: true,
+        default: 'customer'
+    },
     referral: {
         type: String,
         require: true
