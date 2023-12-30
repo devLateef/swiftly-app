@@ -34,6 +34,14 @@ const userSchema = mongoose.Schema({
     timestamp: true
 });
 
+userSchema.pre('save', function(next){
+    const user = this;
+    bcrypt.hash(user.password, 10, (err, hash)=>{
+        user.password = hash;
+        next();
+    });
+});
+
 const userCollection = mongoose.model('User', userSchema);
 
 module.exports = userCollection;
