@@ -13,7 +13,7 @@ const userSchema = mongoose.Schema({
         require: true
     },
     phone: {
-        type: String,
+        type: Number,
         require: true
     },
     password: {
@@ -27,7 +27,7 @@ const userSchema = mongoose.Schema({
     },
     referral: {
         type: String,
-        require: true
+        require: false
     },
 },
 {
