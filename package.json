@@ -1,6 +1,6 @@
 {
   "name": "swiftly-app",
-  "description": "",
+  "description": "Logistics application that ensure seamless delivery services",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
