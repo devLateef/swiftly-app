@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 const userSchema = mongoose.Schema({
     firstname: {
         type: String,
@@ -10,11 +11,13 @@ const userSchema = mongoose.Schema({
     },
     email: {
         type: String,
-        require: true
+        require: true,
+        unique: true
     },
     phone: {
         type: Number,
-        require: true
+        require: true,
+        unique: true
     },
     password: {
         type: String,
@@ -27,7 +30,8 @@ const userSchema = mongoose.Schema({
     },
     referral: {
         type: String,
-        require: false
+        require: false,
+        default: 'Nil'
     },
 },
 {
@@ -36,7 +40,8 @@ const userSchema = mongoose.Schema({
 
 userSchema.pre('save', function(next){
     const user = this;
-    bcrypt.hash(user.password, 10, (err, hash)=>{
+    const salt = 10
+    bcrypt.hash(user.password, salt, (err, hash)=>{
         user.password = hash;
         next();
     });

@@ -2,17 +2,28 @@ const User = require('../models/user');
 const asyncHandler = require('express-async-handler');
 
 const userReg = asyncHandler(async(req, res)=>{
-    const { name, password, phone } = req.body;
+    console.log(req.body);
+    const { 
+        firstname, 
+        surname, 
+        email, 
+        phone, 
+        password,
+        referral 
+    } = req.body;
     try {
         const user = await User.create({
-            name,
+            firstname,
+            surname,
+            email,
+            phone,
             password,
-            phone
+            referral
         });
         res.json({message: 'User Created Successfully', data: user});
         
     } catch (error) {
-        res.json('Error occured: ', error.message);
+        res.json({message: error.message});
     };
 });
 
